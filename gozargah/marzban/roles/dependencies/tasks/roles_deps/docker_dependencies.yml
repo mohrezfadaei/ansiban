@@ -1,0 +1,16 @@
+---
+- name: Install required packages for Docker repository
+  ansible.builtin.apt:
+    name:
+      - software-properties-common
+      - apt-transport-https
+      - ca-certificates
+      - gnupg2
+    state: present
+    force_apt_get: true
+    update_cache: true
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Include module_deps/dnf.yml task
+  ansible.builtin.include_tasks: modules_deps/dnf.yml
+  when: ansible_facts['os_family'] == "RedHat"

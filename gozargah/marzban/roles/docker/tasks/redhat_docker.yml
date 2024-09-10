@@ -1,0 +1,30 @@
+---
+- name: Install docker role dependencies
+  ansible.builtin.include_role:
+    name: dependencies
+    tasks_from: roles_deps/docker_dependencies.yml
+
+- name: Add Docker repository
+  ansible.builtin.yum_repository:
+    name: docker-ce
+    description: Docker CE Repository
+    baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+    gpgcheck: true
+    enabled: true
+    gpgkey: "https://download.docker.com/linux/centos/gpg"
+
+- name: Install Docker using dnf
+  ansible.builtin.dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+    update_cache: true
+    use_backend: dnf
+
+- name: Enable and start Docker service
+  ansible.builtin.systemd_service:
+    name: docker
+    enabled: true
+    state: started

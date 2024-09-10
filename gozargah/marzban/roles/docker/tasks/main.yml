@@ -1,2 +1,8 @@
 ---
-# tasks file for docker
+- name: Include redhat_docker.yml task
+  ansible.builtin.include_tasks: redhat_docker.yml
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Include debian_docker.yml task
+  ansible.builtin.include_tasks: debian_docker.yml
+  when: ansible_facts['os_family'] == "Debian"
