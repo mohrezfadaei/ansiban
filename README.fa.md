@@ -5,7 +5,7 @@
 ## زبان‌های موجود
 
 - [فارسی (Persian)](README.fa.md) ✅
-- [English](README.md)
+- [English](https://github.com/mohrezfadaei/ansiban)
 - [中文 (Chinese)](README.ch.md)
 
 ## شروع سریع

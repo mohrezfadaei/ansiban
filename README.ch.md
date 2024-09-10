@@ -5,7 +5,7 @@
 ## 可用语言
 
 - [中文 (Chinese)](README.ch.md) ✅
-- [English](README.md)
+- [English](https://github.com/mohrezfadaei/ansiban)
 - [فارسی (Persian)](README.fa.md)
 
 ## 快速开始

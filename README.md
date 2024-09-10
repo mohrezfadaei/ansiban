@@ -4,7 +4,7 @@
 
 ## Available Languages
 
-- [English](README.md) ✅
+- [English](https://github.com/mohrezfadaei/ansiban) ✅
 - [فارسی (Persian)](README.fa.md)
 - [中文 (Chinese)](README.ch.md)
 
