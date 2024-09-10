@@ -1,0 +1,46 @@
+---
+- name: Ensure Marzban directory exists
+  ansible.builtin.file:
+    path: "{{ marzban_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy docker-compose.yml to {{ marzban_dir }}
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: "{{ marzban_dir }}/docker-compose.yml"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Tempalte .env file configurations to {{ marzban_dir }}
+  ansible.builtin.template:
+    src: .env.j2
+    dest: "{{ marzban_dir }}/.env"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Ensure Marzban subscription directory exists
+  ansible.builtin.file:
+    path: "{{ deploy_marzban_subscription_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+    recurse: true
+
+- name: Download Subscription templates
+  ansible.builtin.uri:
+    url: https://raw.githubusercontent.com/x0sina/marzban-sub/main/index.html
+    dest: "{{ deploy_marzban_subscription_dir }}"
+
+- name: Bring up Marzban container
+  ansible.builtin.command:
+    cmd: "docker compose up -d"
+  args:
+    chdir: "{{ marzban_dir }}"
+  register: compose_output
+  changed_when: "'up-to-date' not in compose_output.stdout"

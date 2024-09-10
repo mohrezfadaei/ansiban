@@ -1,0 +1,3 @@
+---
+deploy_marzban_dir: /opt/marzban
+deploy_marzban_subscription_dir: /var/lib/marzban/templates/subscription

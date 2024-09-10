@@ -1,0 +1,23 @@
+services:
+  marzban:
+    image: gozargah/marzban:latest
+    restart: always
+    env_file: .env
+    ports:
+      - "8000:8000"
+    networks:
+      - marzban
+    volumes:
+      - /var/lib/marzban:/var/lib/marzban
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    env_file: .env
+    networks:
+      - marzban
+    volumes:
+      - /var/lib/marzban/mysql:/var/lib/mysql
+
+networks:
+  marzban:

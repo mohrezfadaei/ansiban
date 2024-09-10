@@ -1,0 +1,30 @@
+---
+marzban_subscription_subdomain: your subdomain # e.g., sub
+marzban_domain: your_domain # e.g., myv2panel.com
+
+marzban_custom_templates_dir: /var/lib/marzban/templates
+marzban_subscription_page_template: subscription/index.html
+marzban_v2ray_subscription_template: v2ray/default.json
+
+marzban_use_custom_json_default: True
+marzban_use_custom_json_for_v2rayn: True
+marzban_use_custom_json_for_v2rayng: True
+marzban_use_custom_json_for_streisand: True
+
+
+marzban_sub_profile_title: Subscription # Your organization name
+marzban_telegram_support_account: marzban
+marzban_sub_update_interval: 12
+marzban_randomize_subscription_configs: True
+
+marzban_users_autodelete_days: -1
+marzban_user_autodelete_include_limited_accounts: False
+
+marzban_docs: False
+marzban_debug: False
+
+marzban_jwt_access_token_expire_minutes: 1440
+
+db_general_password: DATABASE_PASSWORD
+
+marzban_dir: /opt/marzban

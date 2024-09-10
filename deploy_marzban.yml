@@ -1,0 +1,7 @@
+---
+- name: Deploy Marzban
+  hosts: master
+  become: true
+
+  roles:
+    - deploy_marzban
