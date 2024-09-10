@@ -1,0 +1,17 @@
+---
+- name: Bring down Marzban container
+  ansible.builtin.command:
+    cmd: docker compose down
+  args:
+    chdir: "{{ marzban_dir }}"
+  register: down_output
+  changed_when: "'Removing network' in down_output.stdout"
+  ignore_errors: true
+
+- name: Bring up Marzban container
+  ansible.builtin.command:
+    cmd: docker compose up -d
+  args:
+    chdir: "{{ marzban_dir }}"
+  register: up_output
+  changed_when: "'Creating' in up_output.stdout or 'Recreating' in up_output.stdout"

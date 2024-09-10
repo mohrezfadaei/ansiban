@@ -1,0 +1,7 @@
+---
+- name: Recreate marzban and mysql containers
+  hosts: master
+  become: true
+
+  roles:
+    - restart_marzban
