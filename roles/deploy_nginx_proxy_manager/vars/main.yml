@@ -1,0 +1,2 @@
+---
+deploy_nginx_proxy_manager_dir: /opt/nginx_proxy_manager

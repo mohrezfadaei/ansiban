@@ -1,0 +1,24 @@
+---
+- name: Ensure Nginx Proxy Manager directory exists
+  ansible.builtin.file:
+    path: "{{ deploy_nginx_proxy_manager_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy docker-compose.yml file
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: "{{ deploy_nginx_proxy_manager_dir }}/docker-compose.yml"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Bring up Nginx Proxy Manager container
+  ansible.builtin.command:
+    cmd: docker compose up -d
+  args:
+    chdir: "{{ deploy_nginx_proxy_manager_dir }}"
+  register: up_output
+  changed_when: "'Creating' in up_output.stdout or 'Recreating' in up_output.stdout"

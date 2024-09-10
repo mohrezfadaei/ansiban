@@ -1,0 +1,7 @@
+---
+- name: Deploy nginx-reverse-proxy-manager application
+  hosts: master
+  become: true
+
+  roles:
+    - deploy_nginx_proxy_manager
