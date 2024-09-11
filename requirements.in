@@ -1,0 +1,5 @@
+# Python requirements for executing
+ansible~=10.4.0
+docker
+molecule
+pip-tools
