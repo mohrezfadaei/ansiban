@@ -11,7 +11,7 @@
     baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
     gpgcheck: true
     enabled: true
-    gpgkey: "https://download.docker.com/linux/centos/gpg"
+    gpgkey: https://download.docker.com/linux/centos/gpg
 
 - name: Install Docker using dnf
   ansible.builtin.dnf:
