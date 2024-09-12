@@ -1,0 +1,44 @@
+---
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install perquisition packages
+  ansible.builtin.apt:
+    name:
+      - socat
+      - wget
+      - git
+    state: present
+
+- name: Ensure Marzban Node direcotry exists
+  ansible.builtin.file:
+    path: "{{ deploy_node_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy Marzban Node docker-compose.yml
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: "{{ deploy_node_dir }}"
+    mode: "0644"
+
+- name: Ensure marzban volume dir exists
+  ansible.builtin.file:
+    path: "{{ deploy_node_volume_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Embed SSL client certificate file
+  ansible.builtin.copy:
+    content: "{{ ssl_certificate_key }}"
+    dest: /var/lib/marzban-node/ssl_client_cert.pem
+    mode: "0644"
+
+- name: Bring up Docker Compose container
+  ansible.builtin.command:
+    cmd: docker compose up -d
+  args:
+    chdir: "{{ deploy_node_dir }}"
+  register: compose_output
+  changed_when: "'up-to-date' not in compose_output.stdout"

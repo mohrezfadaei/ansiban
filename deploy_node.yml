@@ -1,0 +1,8 @@
+---
+- name: Deploy Marzban Node
+  hosts: nodes
+  become: true
+
+  roles:
+    - install_docker
+    - deploy_node

@@ -1,0 +1,3 @@
+---
+deploy_node_dir: /opt/marzban-node
+deploy_node_volume_dir: /var/lib/marzban-node
