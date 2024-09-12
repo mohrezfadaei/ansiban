@@ -1,4 +1,7 @@
 ---
+marzban_username: ""
+marzban_password: ""
+
 marzban_subscription_subdomain: your subdomain # e.g., sub
 marzban_domain: your_domain # e.g., myv2panel.com
 
